@@ -1,6 +1,8 @@
-using Jazani.Domain.Admins.Repositories;
+using Jazani.Application.Admins.Dtos.Offices.Mappers;
+using Jazani.Application.Admins.Services;
+using Jazani.Application.Admins.Services.Implementations;
 using Jazani.Infrastructure.Cores.Contexts;
-using Jazani.Infrastructure.Admins.Persistences;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,19 +13,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Infrastructure
-builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.addInfrastructureServices(builder.Configuration);
 
-//Domain-Infrastructure
+//Applications
+builder.Services.AddTransient<IOfficeService,OfficeService>();
 
-//addSingleton se utiliza cuando la misma instancia se utiliza en todo
-//el ciclo de vida del proyecto 
-//builder.Services.AddSingleton
-//addScoped se recomienda para Sesiones, en REST API es lo mismo que addTransient
-////por que son peticiones sin estado,por cada petición se genera una nueva instacia
-//y contenedor administrará esa instancia
-
-builder.Services.AddTransient<IOfficeRepository, OfficeRepository>();
-
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(OfficeMapper));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

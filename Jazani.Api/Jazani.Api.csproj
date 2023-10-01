@@ -13,7 +13,7 @@
 
   <ItemGroup>
 	  <!--Comunicar Api con Infrastructure-->
-    <ProjectReference Include="..\Jazani.Domain\Jazani.Domain.csproj" />
+    <ProjectReference Include="..\Jazani.Application\Jazani.Application.csproj" />
     <ProjectReference Include="..\Jazani.Infrastructure\Jazani.Infrastructure.csproj" />
   </ItemGroup>
 
