@@ -8,5 +8,6 @@ namespace Jazani.Domain.Admins.Repositories
     {
         Task<IReadOnlyList<Office>> FindAllAsync();
         Task<Office?> FindByIdAsync(int id);
+        Task<Office?> SaveAsync(Office office);
     }
 }
